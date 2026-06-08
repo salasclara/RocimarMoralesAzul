@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noticias — Rocimar Morales · Periodista · Cabimas, Venezuela</title>
+<meta name="description" content="Noticias y análisis periodístico desde la Costa Oriental del Lago. Rocimar Morales, la voz de la zona petrolera.">
+<meta property="og:title" content="Noticias — Rocimar Morales">
+<meta property="og:description" content="Noticias y análisis periodístico desde la Costa Oriental del Lago, Zulia, Venezuela.">
+<meta property="og:url" content="https://rocimarmorales.com/noticias">
+<link rel="canonical" href="https://rocimarmorales.com/noticias">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Manrope:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0c0b0a;
+  --paper: #f6f3ee;
+  --warm: #ede8df;
+  --brick: #1a5276;
+  --gold: #c9973a;
+  --ivory: #faf8f4;
+  --muted: #7a7268;
+  --line: rgba(12,11,10,0.12);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CURSOR */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--brick);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  mix-blend-mode: multiply;
+  transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--brick);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s;
+  opacity: 0.6;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--warm); }
+::-webkit-scrollbar-thumb { background: var(--brick); border-radius: 2px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100; padding: 0 48px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+}
+nav.scrolled {
+  background: rgba(246,243,238,0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--line);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 600;
+  letter-spacing: 0.02em; color: var(--gold);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--brick); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--brick); }
+.nav-ig {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; font-size: 12px; font-weight: 700;
+  color: var(--brick); letter-spacing: 0.05em;
+  padding: 8px 20px; border: 1.5px solid var(--brick);
+  border-radius: 40px; transition: all 0.25s;
+}
+.nav-ig:hover { background: var(--brick); color: white; }
+
+/* HERO NOTICIAS */
+.noticias-hero {
+  padding: 140px 80px 80px;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.noticias-hero::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.noticias-hero::after {
+  content: 'BLOG';
+  position: absolute; right: 80px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 700; color: rgba(201,151,58,0.06);
+  letter-spacing: -0.04em; pointer-events: none;
+  white-space: nowrap;
+}
+.hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; display: block;
+}
+.noticias-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 300; color: white;
+  line-height: 1.1; margin-bottom: 20px;
+}
+.noticias-hero h1 em { font-style: italic; color: var(--gold); }
+.noticias-hero p {
+  color: rgba(255,255,255,0.5);
+  font-size: 14px; max-width: 480px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
+/* CONTENIDO PRINCIPAL */
+.noticias-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 40px 120px;
+}
+
+/* ESTADO LOADING / ERROR / VACÍO */
+.estado {
+  text-align: center; padding: 80px 20px;
+}
+.estado-icon {
+  font-size: 48px; margin-bottom: 20px; display: block;
+}
+.estado h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 400;
+  color: var(--ink); margin-bottom: 12px;
+}
+.estado p {
+  color: var(--muted); font-size: 14px;
+  font-family: 'DM Mono', monospace;
+}
+.spinner {
+  width: 36px; height: 36px;
+  border: 2px solid var(--line);
+  border-top-color: var(--brick);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 24px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* GRID DE NOTICIAS */
+.noticias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2px;
+}
+
+/* CARD */
+.noticia-card {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  padding: 36px 32px;
+  text-decoration: none;
+  color: inherit;
+  display: flex; flex-direction: column;
+  gap: 16px;
+  transition: background 0.25s, transform 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.noticia-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.35s ease;
+}
+.noticia-card:hover { background: white; transform: translateY(-2px); }
+.noticia-card:hover::before { width: 100%; }
+
+.card-meta {
+  display: flex; align-items: center; gap: 12px;
+}
+.card-tono {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--warm);
+  color: var(--muted);
+}
+.card-tono.informativo { background: #d6eaf8; color: #1a5276; }
+.card-tono.narrativo { background: #fef9e7; color: #b7950b; }
+.card-tono.urgente { background: #fdecea; color: #922b21; }
+
+.card-fecha {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-left: auto;
+}
+
+.card-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600;
+  line-height: 1.3; color: var(--ink);
+}
+
+.card-contenido {
+  font-size: 13px; color: var(--muted);
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  margin-top: auto;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.card-firma {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--brick);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.card-arrow {
+  width: 28px; height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 14px;
+  transition: all 0.2s;
+}
+.noticia-card:hover .card-arrow {
+  background: var(--brick); color: white; border-color: var(--brick);
+}
+
+/* POST INDIVIDUAL */
+.post-container {
+  display: none;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.post-container.visible { display: block; }
+
+.post-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  margin-bottom: 48px;
+  transition: color 0.2s;
+  cursor: pointer; background: none; border: none; padding: 0;
+}
+.post-back:hover { color: var(--brick); }
+
+.post-tono-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px;
+  display: inline-block; margin-bottom: 24px;
+  background: #d6eaf8; color: #1a5276;
+}
+
+.post-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 600; line-height: 1.15;
+  color: var(--ink); margin-bottom: 24px;
+}
+
+.post-meta {
+  display: flex; gap: 24px; align-items: center;
+  padding: 20px 0; border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 40px;
+}
+.post-meta-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.post-meta-item strong { color: var(--brick); }
+
+.post-cuerpo {
+  font-size: 17px; line-height: 1.85;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+
+.post-firma {
+  margin-top: 48px; padding-top: 32px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 16px;
+}
+.post-firma-texto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-style: italic;
+  color: var(--muted);
+}
+.post-firma-nombre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--brick);
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  padding: 40px 80px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--gold);
+}
+.footer-brand span { color: rgba(255,255,255,0.3); font-weight: 300; }
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: rgba(255,255,255,0.25);
+  letter-spacing: 0.06em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .noticias-hero { padding: 120px 24px 60px; }
+  .noticias-hero::after { display: none; }
+  .noticias-main { padding: 48px 24px 80px; }
+  .noticias-grid { grid-template-columns: 1fr; gap: 1px; }
+  footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo">Rocimar <span>Morales</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/#servicios">Servicios</a></li>
+    <li><a href="/#patrocinios">Patrocinios</a></li>
+    <li><a href="/noticias" class="active">Blog</a></li>
+    <li><a href="/#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://instagram.com/rocimarmorales" target="_blank" class="nav-ig">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    @rocimarmorales
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="noticias-hero">
+  <span class="hero-tag">· Blog periodístico · Costa Oriental del Lago ·</span>
+  <h1>Noticias con<br><em>voz propia</em></h1>
+  <p>Análisis y relatos desde Cabimas, Zulia, Venezuela — escritos por Rocimar Morales</p>
+</section>
+
+<!-- MAIN -->
+<main class="noticias-main">
+
+  <!-- LISTA DE POSTS -->
+  <div id="lista-container">
+    <div class="estado" id="estado-loading">
+      <div class="spinner"></div>
+      <p>Cargando noticias...</p>
+    </div>
+    <div class="estado" id="estado-vacio" style="display:none">
+      <span class="estado-icon">📰</span>
+      <h2>Próximamente</h2>
+      <p>Las primeras noticias llegarán pronto desde la app de Rocimar</p>
+    </div>
+    <div class="noticias-grid" id="noticias-grid"></div>
+  </div>
+
+  <!-- POST INDIVIDUAL -->
+  <div class="post-container" id="post-container">
+    <button class="post-back" id="btn-volver">← Volver al blog</button>
+    <span class="post-tono-badge" id="post-tono"></span>
+    <h1 class="post-titulo" id="post-titulo"></h1>
+    <div class="post-meta">
+      <div class="post-meta-item">Por <strong>Rocimar Morales</strong></div>
+      <div class="post-meta-item" id="post-fecha"></div>
+      <div class="post-meta-item">📍 Cabimas, Zulia</div>
+    </div>
+    <div class="post-cuerpo" id="post-cuerpo"></div>
+    <div class="post-firma">
+      <div>
+        <div class="post-firma-texto">— escrito por</div>
+        <div class="post-firma-nombre">Rocimar Morales</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Rocimar Morales <span>· rocimarmorales.com</span></div>
+  <div class="footer-copy">© 2025 · La voz de la zona petrolera</div>
+</footer>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function animCursor() {
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+  ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+  requestAnimationFrame(animCursor);
+})();
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// SUPABASE CONFIG
+const SUPABASE_URL = 'https://msovubhsxjocyhtuvgss.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_JA5ISeoafduTjNWfjBFxeQ_d5UqdHEN';
+
+// ESTADO
+let todosLosPosts = [];
+
+// CARGAR NOTICIAS
+async function cargarNoticias() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/noticias?publicado=eq.true&order=created_at.desc`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+      }
+    });
+    const posts = await res.json();
+    todosLosPosts = posts;
+
+    document.getElementById('estado-loading').style.display = 'none';
+
+    if (!posts || posts.length === 0) {
+      document.getElementById('estado-vacio').style.display = 'block';
+      return;
+    }
+
+    renderGrid(posts);
+  } catch(e) {
+    document.getElementById('estado-loading').innerHTML = `
+      <span class="estado-icon">⚠️</span>
+      <p style="color:var(--muted);font-family:'DM Mono',monospace;font-size:13px;">Error cargando noticias. Intenta de nuevo.</p>
+    `;
+  }
+}
+
+function formatFecha(fechaStr) {
+  try {
+    return new Date(fechaStr).toLocaleDateString('es-VE', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+  } catch { return ''; }
+}
+
+function renderGrid(posts) {
+  const grid = document.getElementById('noticias-grid');
+  grid.innerHTML = posts.map(post => `
+    <a class="noticia-card" href="/noticias/${post.slug}" data-slug="${post.slug}" data-id="${post.id}">
+      <div class="card-meta">
+        <span class="card-tono ${post.tono || ''}">${post.tono || 'noticia'}</span>
+        <span class="card-fecha">${formatFecha(post.created_at)}</span>
+      </div>
+      <h2 class="card-titulo">${post.titulo}</h2>
+      <p class="card-contenido">${post.contenido}</p>
+      <div class="card-footer">
+        <span class="card-firma">Rocimar Morales</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  `).join('');
+
+  // Interceptar clicks para SPA navigation
+  grid.querySelectorAll('.noticia-card').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const slug = card.dataset.slug;
+      const post = todosLosPosts.find(p => p.slug === slug);
+      if (post) mostrarPost(post);
+    });
+  });
+}
+
+function mostrarPost(post) {
+  document.getElementById('lista-container').style.display = 'none';
+  document.getElementById('post-container').classList.add('visible');
+
+  document.getElementById('post-tono').textContent = post.tono || 'noticia';
+  document.getElementById('post-titulo').textContent = post.titulo;
+  document.getElementById('post-fecha').textContent = formatFecha(post.created_at);
+  document.getElementById('post-cuerpo').textContent = post.contenido;
+
+  window.history.pushState({}, '', `/noticias/${post.slug}`);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function volverAlBlog() {
+  document.getElementById('lista-container').style.display = 'block';
+  document.getElementById('post-container').classList.remove('visible');
+  window.history.pushState({}, '', '/noticias');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('btn-volver').addEventListener('click', volverAlBlog);
+
+// Manejar URL directa a post
+async function manejarURL() {
+  const path = window.location.pathname;
+  const match = path.match(/\/noticias\/(.+)/);
+  if (match) {
+    const slug = match[1];
+    await cargarNoticias();
+    const post = todosLosPosts.find(p => p.slug === slug);
+    if (post) mostrarPost(post);
+  } else {
+    cargarNoticias();
+  }
+}
+
+manejarURL();
+</script>
+</body>
+</html>
