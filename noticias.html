@@ -154,6 +154,14 @@ footer{border-top:1px solid rgba(246,243,238,.06);padding:40px 80px;display:flex
       <span id="p-fecha"></span>
       <span>📍 Cabimas, Zulia</span>
     </div>
+    <div id="p-imagen-wrap" style="display:none; margin:32px 0;">
+      <img
+       id="p-imagen"
+       src=""
+       alt=""
+       style="width:100%; max-height:560px; object-fit:cover; display:block;"
+      >
+</div>
     <div class="post-body" id="p-body"></div>
     <div class="post-firma">
       <div class="post-firma-label">Escrito por</div>
@@ -218,6 +226,16 @@ function mostrar(p){
   document.getElementById('p-tono').textContent=p.tono||'noticia';
   document.getElementById('p-titulo').textContent=p.titulo;
   document.getElementById('p-fecha').textContent=fmt(p.created_at);
+  const imgWrap = document.getElementById('p-imagen-wrap');
+  const img = document.getElementById('p-imagen');
+
+  if (p.imagen) {
+    img.src = p.imagen;
+    img.alt = p.titulo || 'Imagen de la noticia';
+    imgWrap.style.display = 'block';
+  } else {
+    imgWrap.style.display = 'none';
+  }
   document.getElementById('p-body').textContent=p.contenido;
   history.pushState({},'',`/noticias/${p.slug}`);
   scrollTo({top:0,behavior:'smooth'});
