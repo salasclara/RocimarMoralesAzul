@@ -174,15 +174,14 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cur.style.transform=`translate(${mx-5}px,${my-5}px)`;ring.style.transform=`translate(${rx-18}px,${ry-18}px)`;requestAnimationFrame(a);})();
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>20));
 
-const SB='https://msovubhsxjocyhtuvgss.supabase.co';
-const KEY='sb_publishable_JA5ISeoafduTjNWfjBFxeQ_d5UqdHEN';
+const API = 'https://rocimar-servidor-v2-production.up.railway.app';
 let posts=[];
 
 function fmt(d){try{return new Date(d).toLocaleDateString('es-VE',{day:'numeric',month:'long',year:'numeric'});}catch{return '';}}
 
 async function cargar(){
   try{
-    const r=await fetch(`${SB}/rest/v1/noticias?publicado=eq.true&order=created_at.desc`,{headers:{'apikey':KEY,'Authorization':`Bearer ${KEY}`}});
+   const r = await fetch(`${API}/blog`);
     posts=await r.json();
     document.getElementById('loading').style.display='none';
     if(!posts||!posts.length){document.getElementById('vacio').style.display='block';return;}
