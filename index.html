@@ -1159,6 +1159,31 @@ footer {
   /* Radio y contacto */
   .section-radio, .section-metricas, .section-contacto { padding: 60px 20px; }
 }
+/* Corrección responsive: mostrar contenido completo en tablet y móvil */
+@media (max-width: 1024px) {
+  .hero-right.hero-cover-right { display:flex; flex-direction:column; padding:48px 40px 64px; }
+  .sobre-right { display:block; width:100%; max-width:560px; margin:0 auto; }
+  #patrocinantes { padding:80px 40px !important; overflow:hidden; }
+  .patrocinantes-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  #paquetes-grid { grid-template-columns:1fr !important; gap:16px !important; }
+  #paquetes-grid > * { transform:none !important; }
+}
+@media (max-width: 600px) {
+  .hero-right.hero-cover-right { display:flex; padding:32px 20px 48px; }
+  .hero-cover-link { width:100%; }
+  .hero-news { max-width:100%; }
+  .section-sobre { padding:60px 20px; gap:40px; }
+  .sobre-right { display:block; max-width:100%; }
+  .sobre-float { right:0; }
+  #patrocinantes { padding:60px 20px !important; width:100%; overflow:hidden; }
+  #patrocinantes > div { width:100%; max-width:100% !important; }
+  .patrocinantes-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:8px !important; }
+  .patrocinantes-grid > * { min-width:0; padding:20px 10px !important; }
+  .patrocinantes-grid img { max-width:80px; }
+  #paquetes-grid { grid-template-columns:1fr !important; width:100%; gap:16px !important; }
+  #paquetes-grid > * { width:100%; min-width:0; transform:none !important; }
+}
+
 /* ════════════ MODAL SOLICITUD ════════════ */
 .modal-overlay {
   position: fixed; inset: 0;
@@ -1739,7 +1764,7 @@ footer {
     <!-- Logos patrocinantes confirmados -->
     <div class="reveal" style="margin-bottom:64px;">
       <p style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:20px;">Patrocinantes actuales</p>
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px;">
+      <div class="patrocinantes-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px;">
 
         <!-- Slot 1 — Latina 768 Services -->
         <a href="https://wa.me/584141675017" target="_blank" rel="noopener"
