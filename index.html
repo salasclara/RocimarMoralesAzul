@@ -1246,6 +1246,9 @@ footer {
 .hero-cover-link { display:block; width:min(100%,560px); margin:auto; text-decoration:none; }
 .hero-cover-image { display:block; width:100%; height:auto; max-height:calc(100vh - 150px); object-fit:contain; border-radius:18px; box-shadow:0 18px 48px rgba(12,11,10,.18); }
 @media (max-width: 900px) { .hero-cover-right { padding:48px 20px 64px; } .hero-cover-image { max-height:none; } }
+
+/* ÚLTIMAS NOTICIAS — debajo de la portada */
+.hero-news{width:min(100%,560px);margin:20px auto 0}.hero-news-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.hero-news-title{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brick)}.hero-news-all{font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;color:var(--brick);text-decoration:none}.hero-news-window{overflow:hidden;width:100%}.hero-news-track{display:flex;gap:12px;width:max-content;animation:heroNewsScroll 28s linear infinite}.hero-news-window:hover .hero-news-track{animation-play-state:paused}.hero-news-card{width:245px;min-height:92px;display:grid;grid-template-columns:78px 1fr;gap:10px;padding:9px;background:rgba(255,255,255,.72);border:1px solid rgba(26,82,118,.14);border-radius:10px;text-decoration:none;color:var(--ink)}.hero-news-card img{width:78px;height:74px;object-fit:cover;border-radius:7px;background:#ddd}.hero-news-card small{display:block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}.hero-news-card strong{display:block;font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.05;font-weight:700}.hero-news-card:hover{border-color:var(--gold);transform:translateY(-1px)}@keyframes heroNewsScroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 6px))}}@media(max-width:900px){.hero-news{width:100%;max-width:560px}.hero-news-track{animation-duration:24s}.hero-news-card{width:225px}}@media(prefers-reduced-motion:reduce){.hero-news-track{animation:none}}
 </style>
 </head>
 <body>
@@ -1313,6 +1316,13 @@ footer {
     <a href="https://www.instagram.com/rocimarmorales/" target="_blank" rel="noopener" class="hero-cover-link" aria-label="Seguir a Rocimar Morales en Instagram">
       <img src="rocimar-portada.png" alt="Rocimar Morales — La Voz de la Zona Petrolera" class="hero-cover-image">
     </a>
+    <div class="hero-news" aria-label="Últimas noticias">
+      <div class="hero-news-head">
+        <span class="hero-news-title">Últimas noticias</span>
+        <a class="hero-news-all" href="/noticias">Ver todas →</a>
+      </div>
+      <div class="hero-news-window"><div class="hero-news-track" id="heroNewsTrack"></div></div>
+    </div>
   </div>
 </section>
 
@@ -2214,6 +2224,19 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 document.querySelectorAll('[data-servicio]').forEach(el => {
   el.addEventListener('click', e => { e.preventDefault(); openModal(el.getAttribute('data-servicio')); });
 });
+
+// ── ÚLTIMAS NOTICIAS EN PORTADA ──
+(async function cargarHeroNoticias(){
+  const track=document.getElementById('heroNewsTrack'); if(!track)return;
+  try{
+    const r=await fetch('https://rocimar-servidor-v2-production.up.railway.app/blog'); const posts=await r.json();
+    const vistos=new Set(); const ultimas=(Array.isArray(posts)?posts:[]).filter(p=>{const k=(p.slug||p.titulo||'').trim().toLowerCase();if(!k||vistos.has(k))return false;vistos.add(k);return true}).slice(0,6);
+    if(!ultimas.length){track.closest('.hero-news').style.display='none';return}
+    const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const cards=ultimas.map(p=>{const href='/noticias/'+encodeURIComponent(p.slug||'');const img=p.imagen?'<img src="'+esc(p.imagen)+'" alt="" loading="lazy">':'<div style="width:78px;height:74px;border-radius:7px;background:rgba(26,82,118,.08)"></div>';return '<a class="hero-news-card" href="'+href+'">'+img+'<span><small>'+esc(p.tono||p.scope||'Noticia')+'</small><strong>'+esc(p.titulo)+'</strong></span></a>'}).join('');
+    track.innerHTML=cards+cards;
+  }catch(e){track.closest('.hero-news').style.display='none'}
+})();
 </script>
 </body>
 </html>
