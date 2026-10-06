@@ -55,7 +55,7 @@ nav.scrolled{background:rgba(12,11,10,.95);backdrop-filter:blur(12px);box-shadow
 .hero-sub{font-family:'DM Mono',monospace;font-size:11px;color:rgba(246,243,238,.3);letter-spacing:.06em;max-width:400px;line-height:1.7;}
 
 /* MAIN */
-.main{max-width:1200px;margin:0 auto;padding:72px 80px 120px;}
+.main{max-width:1480px;margin:0 auto;padding:72px 56px 120px;}
 
 /* LOADING */
 .estado{text-align:center;padding:80px 20px;}
@@ -65,7 +65,7 @@ nav.scrolled{background:rgba(12,11,10,.95);backdrop-filter:blur(12px);box-shadow
 .empty-h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(246,243,238,.2);margin-bottom:12px;}
 
 /* PORTADA EDITORIAL */
-.featured{display:none;grid-template-columns:1.35fr .65fr;min-height:480px;margin-bottom:48px;border:1px solid rgba(246,243,238,.08);text-decoration:none;color:inherit;overflow:hidden}.featured.on{display:grid}.featured-media{min-height:480px;background:var(--warm);overflow:hidden}.featured-media img{width:100%;height:100%;object-fit:cover;display:block}.featured-copy{padding:44px 38px;display:flex;flex-direction:column;justify-content:center}.featured-kicker,.section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}.featured-kicker{margin-bottom:20px}.featured-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:400;line-height:1.06;margin-bottom:20px}.featured-excerpt{font-size:14px;color:rgba(246,243,238,.48);line-height:1.8;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}.featured-meta{margin-top:28px;padding-top:18px;border-top:1px solid rgba(246,243,238,.08);font-family:'DM Mono',monospace;font-size:10px;color:rgba(246,243,238,.3);display:flex;gap:14px;flex-wrap:wrap}.section-label{display:none;margin:0 0 18px}.section-label.on{display:block}
+.featured{display:none;grid-template-columns:minmax(0,1.45fr) minmax(360px,.55fr);min-height:520px;margin-bottom:48px;border:1px solid rgba(246,243,238,.08);text-decoration:none;color:inherit;overflow:hidden}.featured.on{display:grid}.featured-media{min-height:520px;background:var(--warm);overflow:hidden}.featured-media img{width:100%;height:100%;object-fit:cover;display:block}.featured-copy{padding:44px 38px;display:flex;flex-direction:column;justify-content:center}.featured-kicker,.section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}.featured-kicker{margin-bottom:20px}.featured-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:400;line-height:1.06;margin-bottom:20px}.featured-excerpt{font-size:14px;color:rgba(246,243,238,.48);line-height:1.8;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}.featured-meta{margin-top:28px;padding-top:18px;border-top:1px solid rgba(246,243,238,.08);font-family:'DM Mono',monospace;font-size:10px;color:rgba(246,243,238,.3);display:flex;gap:14px;flex-wrap:wrap}.section-label{display:none;margin:0 0 18px}.section-label.on{display:block}
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;background:transparent}
 
@@ -207,14 +207,20 @@ async function cargar(){
 }
 
 function renderGrid(){
-  const principal=posts.find(p=>p.imagen)||posts[0];
+  const vistos=new Set();
+  const unicos=posts.filter(p=>{
+    const clave=(p.slug||p.titulo||'').trim().toLowerCase();
+    if(!clave||vistos.has(clave)) return false;
+    vistos.add(clave); return true;
+  });
+  const principal=unicos.find(p=>p.imagen)||unicos[0];
   const f=document.getElementById('featured');
   if(principal){
     f.href='/noticias/'+principal.slug;
     f.innerHTML='<div class="featured-media">'+(principal.imagen?'<img src="'+principal.imagen+'" alt="'+(principal.titulo||'Noticia destacada')+'">':'')+'</div><div class="featured-copy"><div class="featured-kicker">Noticia destacada · '+(principal.tono||'noticia')+'</div><h2 class="featured-title">'+principal.titulo+'</h2><p class="featured-excerpt">'+(principal.contenido||'')+'</p><div class="featured-meta"><span>'+fmt(principal.created_at)+'</span>'+(principal.scope?'<span>📍 '+principal.scope+'</span>':'')+'<span>Rocimar Morales →</span></div></div>';
     f.classList.add('on'); f.onclick=e=>{e.preventDefault();mostrar(principal);};
   }
-  const restantes=posts.filter(p=>!principal||p.slug!==principal.slug);
+  const restantes=unicos.filter(p=>!principal||p.slug!==principal.slug);
   if(restantes.length)document.getElementById('section-label').classList.add('on');
   const g=document.getElementById('grid');
   g.innerHTML=restantes.map(p=>'<a class="card" href="/noticias/'+p.slug+'" data-slug="'+p.slug+'">'+(p.imagen?'<div class="card-image"><img src="'+p.imagen+'" alt="'+(p.titulo||'Imagen de la noticia')+'" loading="lazy"></div>':'')+'<div class="card-top"><span class="badge-tono '+(p.tono||'')+'">'+(p.tono||'noticia')+'</span><span class="card-fecha">'+fmt(p.created_at)+'</span></div><h2 class="card-titulo">'+p.titulo+'</h2><p class="card-extracto">'+p.contenido+'</p><div class="card-foot"><span class="card-firma">Rocimar Morales</span><span class="card-arr">→</span></div></a>').join('');
