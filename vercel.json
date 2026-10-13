@@ -15,6 +15,10 @@
     {
       "source": "/cabimas-y-su-gente/ejemplo",
       "destination": "/cabimas-resena-ejemplo.html"
+    },
+    {
+      "source": "/cabimas-y-su-gente/talento-venezolano-new-york-fashion-week",
+      "destination": "/cabimas-nyfw-2026.html"
     }
   ]
 }
