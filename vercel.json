@@ -1,1 +1,24 @@
-{ "rewrites": [ { "source": "/noticias", "destination": "/noticias.html" }, { "source": "/noticias/(.*)", "destination": "/noticias.html" } ] } 
+{
+  "rewrites": [
+    {
+      "source": "/noticias",
+      "destination": "/noticias.html"
+    },
+    {
+      "source": "/noticias/(.*)",
+      "destination": "/noticias.html"
+    },
+    {
+      "source": "/cabimas-y-su-gente",
+      "destination": "/cabimas-y-su-gente.html"
+    },
+    {
+      "source": "/cabimas-y-su-gente/ejemplo",
+      "destination": "/cabimas-resena-ejemplo.html"
+    },
+    {
+      "source": "/cabimas-y-su-gente/talento-venezolano-new-york-fashion-week",
+      "destination": "/cabimas-nyfw-2026.html"
+    }
+  ]
+}
