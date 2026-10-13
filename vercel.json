@@ -1,1 +1,16 @@
-{ "rewrites": [ { "source": "/noticias", "destination": "/noticias.html" }, { "source": "/noticias/(.*)", "destination": "/noticias.html" } ] } 
+{
+  "rewrites": [
+    {
+      "source": "/noticias",
+      "destination": "/noticias.html"
+    },
+    {
+      "source": "/noticias/(.*)",
+      "destination": "/noticias.html"
+    },
+    {
+      "source": "/cabimas-y-su-gente",
+      "destination": "/cabimas-y-su-gente.html"
+    }
+  ]
+}
