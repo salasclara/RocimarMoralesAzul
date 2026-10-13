@@ -11,6 +11,10 @@
     {
       "source": "/cabimas-y-su-gente",
       "destination": "/cabimas-y-su-gente.html"
+    },
+    {
+      "source": "/cabimas-y-su-gente/ejemplo",
+      "destination": "/cabimas-resena-ejemplo.html"
     }
   ]
 }
