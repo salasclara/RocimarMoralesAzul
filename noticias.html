@@ -118,6 +118,23 @@ footer{border-top:1px solid rgba(246,243,238,.06);padding:40px 80px;display:flex
   .featured.on{grid-template-columns:1fr}.featured-media{min-height:250px;height:250px}.featured-copy{padding:30px 24px}.grid{grid-template-columns:1fr;}
   footer{padding:32px 24px;flex-direction:column;gap:12px;text-align:center;}
 }
+
+/* Encabezado y portada de Noticias: presentación móvil */
+@media(max-width:768px){
+  html,body{max-width:100%;overflow-x:hidden;}
+  #nav{height:64px;padding:0 20px;gap:12px;}
+  #nav .nav-logo{font-size:1.3rem;white-space:nowrap;flex-shrink:0;}
+  #nav .nav-logo span{color:var(--gold);}
+  #nav .nav-home{display:none;}
+  #nav .nav-ig{margin-left:auto;flex-shrink:0;padding:9px 11px;font-size:0;gap:0;line-height:1;}
+  #nav .nav-ig svg{width:19px;height:19px;}
+  .hero{min-height:0;padding:125px 24px 55px;justify-content:flex-start;}
+  .hero-tag{font-size:10px;letter-spacing:.12em;line-height:1.6;margin-bottom:24px;gap:10px;}
+  .hero-tag::before{width:18px;}
+  .hero-h1{font-size:clamp(43px,11vw,65px);line-height:1.03;margin-bottom:20px;overflow-wrap:break-word;}
+  .hero-h1 em{font-size:.95em;}
+  .hero-sub{font-size:11px;line-height:1.7;letter-spacing:.015em;color:rgba(246,243,238,.62);}
+}
 </style>
 </head>
 <body>
@@ -135,8 +152,8 @@ footer{border-top:1px solid rgba(246,243,238,.06);padding:40px 80px;display:flex
 </nav>
 
 <section class="hero">
-  <div class="hero-bg-text">BLOG</div>
-  <span class="hero-tag">Blog periodístico · Costa Oriental del Lago</span>
+  <div class="hero-bg-text">NOTICIAS</div>
+  <span class="hero-tag">Noticias · Costa Oriental del Lago</span>
   <h1 class="hero-h1">Noticias con<em>Rocimar Morales</em></h1>
   <p class="hero-sub">Análisis y relatos desde Cabimas, Zulia, Venezuela — escritos por Rocimar Morales</p>
 </section>
