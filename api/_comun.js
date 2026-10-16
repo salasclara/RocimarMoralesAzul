@@ -16,6 +16,9 @@ function resumen(contenido, max = 160) {
   const limpio = String(contenido || '')
     .replace(/^#+[^\n]*\n?/gm, '')
     .replace(/[*_`>]/g, '')
+    .trim()
+    // Un salto de línea sin puntuación (por ejemplo, tras un subtítulo) se convierte en punto.
+    .replace(/([^.!?:;…])[ \t]*\n+\s*/g, '$1. ')
     .replace(/\s+/g, ' ')
     .trim();
   if (limpio.length <= max) return limpio;
