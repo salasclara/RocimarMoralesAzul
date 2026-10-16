@@ -1190,6 +1190,7 @@ footer {
   .patrocinantes-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:8px !important; }
   .patrocinantes-grid > * { min-width:0; padding:20px 10px !important; }
   .patrocinantes-grid img { max-width:80px; }
+  .patrocinantes-grid img.logo-ancho { max-width:100% !important; }
   #paquetes-grid { grid-template-columns:1fr !important; width:100%; gap:16px !important; }
   #paquetes-grid > * { width:100%; min-width:0; transform:none !important; }
 }
@@ -1845,8 +1846,8 @@ footer {
         <a href="https://latina768.com/?utm_source=rocimarmorales.com&amp;utm_medium=referral&amp;utm_campaign=patrocinantes" target="_blank" rel="noopener" aria-label="Latina 768 Services — visitar sitio web"
            style="background:var(--ivory); padding:32px 24px; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:120px; border:1px solid var(--line); transition:all 0.25s; text-decoration:none; gap:10px;"
            onmouseover="this.style.borderColor='var(--brick)';this.style.background='white'" onmouseout="this.style.borderColor='var(--line)';this.style.background='var(--ivory)'">
-          <img src="latina768.png" alt="Latina 768 Services" style="width:100px; height:auto; object-fit:contain;">
-          <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); text-align:center;">IA para Empresas</div>
+          <img src="latina768.png" alt="Latina 768 Services" class="logo-ancho" width="640" height="170" style="width:100%; max-width:170px; height:auto; object-fit:contain;">
+          <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); text-align:center;">Consultoría de marketing con inteligencia artificial</div>
         </a>
 
         <!-- Slot 2 — Pasta Bar -->
