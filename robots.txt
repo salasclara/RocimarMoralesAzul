@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://rocimarmorales.com/sitemap.xml
+Sitemap: https://rocimarmorales.com/sitemap-noticias.xml
