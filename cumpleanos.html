@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cumpleañeros de Cabimas — Rocimar Morales</title>
+<meta name="description" content="Los cumpleañeros del día en Cabimas y la Costa Oriental del Lago. Inscribe a tu familiar y sale en la web y en el Canal de Rocimar Morales.">
+<link rel="canonical" href="https://rocimarmorales.com/cumpleanos">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rocimar Morales">
+<meta property="og:title" content="🎉 Cumpleañeros de Cabimas">
+<meta property="og:description" content="Los cumpleañeros del día en Cabimas y la COL, con Rocimar Morales.">
+<meta property="og:url" content="https://rocimarmorales.com/cumpleanos">
+<meta property="og:image" content="https://rocimarmorales.com/rocimar-portada.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Manrope:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0c0b0a;--ink2:#151310;--paper:#f6f3ee;--gold:#c9973a;--gold2:#e8c27a;--petroleo:#1a5276;--muted:rgba(246,243,238,.58);--line:rgba(246,243,238,.09);--wa:#25d366;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Manrope',sans-serif;background:var(--ink);color:var(--paper);line-height:1.6;overflow-x:hidden;}
+nav{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 max(20px,env(safe-area-inset-right,0px)) 0 max(20px,env(safe-area-inset-left,0px));background:rgba(12,11,10,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--gold);text-decoration:none;}
+.nav-logo span{color:rgba(246,243,238,.4);font-weight:300;}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,243,238,.45);text-decoration:none;}
+.nav-links a.active,.nav-links a:hover{color:var(--gold);}
+.hero{padding:64px max(20px,6vw) 48px;border-bottom:1px solid rgba(201,151,58,.2);background:radial-gradient(ellipse at 80% 20%,rgba(201,151,58,.10),transparent 60%);}
+.fecha{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.fecha::before{content:'';width:28px;height:1px;background:var(--gold);opacity:.6;}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(44px,7vw,88px);line-height:.95;letter-spacing:-.02em;}
+h1 em{display:block;font-style:italic;color:var(--gold);}
+.hero p{margin-top:18px;max-width:54ch;color:var(--muted);font-size:15px;}
+.patro{display:inline-flex;align-items:center;gap:12px;margin-top:26px;padding:10px 16px;border:1px dashed rgba(201,151,58,.5);border-radius:10px;font-size:13px;color:var(--muted);}
+.patro b{color:var(--gold);font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;}
+main{max-width:1180px;margin:0 auto;padding:48px max(20px,4vw) 96px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:48px;align-items:start;}
+.label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,243,238,.45);margin-bottom:18px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:14px;padding:22px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;min-width:0;}
+.card.dest{grid-column:1/-1;flex-direction:row;text-align:left;gap:24px;border-color:rgba(201,151,58,.6);background:linear-gradient(120deg,rgba(201,151,58,.14),transparent 55%),var(--ink2);padding:26px;}
+.avatar{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--ink);background:linear-gradient(135deg,var(--gold2),var(--gold));border:3px solid rgba(201,151,58,.35);flex-shrink:0;}
+.card.dest .avatar{width:120px;height:120px;font-size:2.6rem;}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.1;}
+.card.dest h3{font-size:2.1rem;}
+.sector{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,243,238,.45);}
+.msg{font-size:14px;color:var(--muted);font-style:italic;}
+.de{font-size:12px;color:rgba(246,243,238,.4);}
+.tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
+.card.dest .tags{justify-content:flex-start;}
+.tag{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.tag.gold{background:var(--gold);color:var(--ink);}
+.tag.ej{border:1px dashed rgba(246,243,238,.3);color:rgba(246,243,238,.5);}
+.compartir{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font-family:inherit;}
+.btn-gold{background:var(--gold);color:var(--ink);}
+.btn-wa{background:transparent;border-color:rgba(37,211,102,.55);color:var(--wa);}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+aside{position:sticky;top:88px;background:var(--ink2);border:1px solid rgba(201,151,58,.3);border-radius:14px;padding:26px;}
+aside h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1.05;margin-bottom:6px;}
+aside .nota{color:var(--muted);font-size:13.5px;margin-bottom:18px;}
+form{display:flex;flex-direction:column;gap:12px;}
+.fila{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+label{display:flex;flex-direction:column;gap:5px;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,243,238,.55);min-width:0;}
+input,select,textarea{font-family:'Manrope',sans-serif;font-size:14px;color:var(--paper);background:var(--ink);border:1px solid rgba(246,243,238,.15);border-radius:8px;padding:10px 12px;width:100%;}
+textarea{min-height:76px;resize:vertical;}
+.check{flex-direction:row;align-items:flex-start;gap:10px;text-transform:none;letter-spacing:0;font-family:'Manrope',sans-serif;font-size:13px;color:var(--paper);}
+.check input{width:18px;height:18px;flex-shrink:0;accent-color:var(--gold);margin-top:2px;}
+form .btn{justify-content:center;}
+.error{color:#f0a08f;font-size:13px;min-height:1em;}
+.foto{font-size:12.5px;color:var(--muted);}
+footer{border-top:1px solid var(--line);padding:28px max(20px,4vw);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:rgba(246,243,238,.4);}
+footer b{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.05rem;}
+@media (max-width:900px){main{grid-template-columns:1fr;}aside{position:static;}.nav-links{display:none;}}
+@media (max-width:560px){.card.dest{flex-direction:column;text-align:center;}.card.dest .tags{justify-content:center;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Rocimar <span>Morales</span></a>
+  <div class="nav-links"><a href="/noticias">Noticias</a><a href="/cabimas-y-su-gente">Cabimas y su Gente</a><a href="/cumpleanos" class="active">Cumpleañeros</a></div>
+</nav>
+
+<section class="hero">
+  <div class="fecha" id="fecha">Hoy</div>
+  <h1>¡Feliz cumpleaños,<em>Cabimas!</em></h1>
+  <p>Cada día celebramos a la gente de la Costa Oriental del Lago. Inscribe a tu familiar o amigo y sale aquí, en los estados y en el Canal de Rocimar Morales.</p>
+  <div class="patro"><b>Presentado por</b> Espacio disponible para tu pastelería, floristería o tienda</div>
+</section>
+
+<main>
+  <section aria-label="Cumpleañeros de hoy">
+    <div class="label">🎂 Cumpleañeros de hoy</div>
+    <div class="grid" id="grid"></div>
+    <div class="compartir">
+      <a class="btn btn-wa" id="share" href="#" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+      <a class="btn btn-wa" href="https://whatsapp.com/channel/0029VaCr6fkK0IBmSADPtV04" target="_blank" rel="noopener">Recíbelos cada día en el Canal</a>
+    </div>
+  </section>
+
+  <aside id="inscribir">
+    <h2>Inscribe a un cumpleañero</h2>
+    <p class="nota">Llena los datos y envíalos por WhatsApp. Publicamos solo el día, nunca el año ni la edad.</p>
+    <form id="form" novalidate>
+      <label for="f-nombre">Nombre del cumpleañero<input id="f-nombre" maxlength="60" required></label>
+      <div class="fila">
+        <label for="f-dia">Día<select id="f-dia" required></select></label>
+        <label for="f-mes">Mes<select id="f-mes" required></select></label>
+      </div>
+      <label for="f-sector">Sector o ciudad<input id="f-sector" maxlength="50" placeholder="Ej.: Cabimas, Ambrosio"></label>
+      <label for="f-msg">Mensaje corto<textarea id="f-msg" maxlength="140" placeholder="Ej.: ¡Feliz día, mamá! Te amamos."></textarea></label>
+      <label for="f-de">Lo envía<input id="f-de" maxlength="50" placeholder="Ej.: Sus hijos" required></label>
+      <label class="check" for="f-dest"><input type="checkbox" id="f-dest">Quiero un Saludo destacado (foto grande y primero en la lista)</label>
+      <label class="check" for="f-ok"><input type="checkbox" id="f-ok" required>Tengo permiso del cumpleañero para publicar su nombre y foto</label>
+      <p class="foto">📷 Al abrir WhatsApp, adjunta una foto del cumpleañero.</p>
+      <div class="error" id="error" role="alert"></div>
+      <button class="btn btn-gold" type="submit">Enviar por WhatsApp →</button>
+    </form>
+  </aside>
+</main>
+
+<footer><div><b>Rocimar Morales</b> · rocimarmorales.com</div><div>La voz de la zona petrolera</div></footer>
+
+<script>
+// Ejemplos para la vista previa. En la versión real se cargan los inscritos aprobados para el día de hoy.
+const HOY = [
+  {nombre:'María Fernández', sector:'Cabimas · La Misión', msg:'¡Feliz día, mamá! Gracias por tanto amor.', de:'Sus hijos', destacado:true},
+  {nombre:'José Luis Pérez', sector:'Tía Juana', msg:'¡Que cumplas muchos más, compadre!', de:'Sus amigos del trabajo'},
+  {nombre:'Ana Gabriela Rincón', sector:'Ciudad Ojeda', msg:'¡Feliz cumpleaños, princesa!', de:'Su familia'},
+  {nombre:'Carlos Urdaneta', sector:'Cabimas · Ambrosio', msg:'¡Bendiciones en tu día!', de:'Su esposa'},
+];
+const WA = '584141675017';
+const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iniciales = n => n.split(/\s+/).filter(Boolean).slice(0,2).map(p => p[0].toUpperCase()).join('');
+
+// Fecha de hoy en Venezuela
+const hoy = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Caracas'}));
+document.getElementById('fecha').textContent = `${hoy.getDate()} de ${MESES[hoy.getMonth()]}`;
+
+const lista = [...HOY].sort((a,b) => (b.destacado?1:0)-(a.destacado?1:0));
+document.getElementById('grid').innerHTML = lista.map(p => `
+  <article class="card${p.destacado?' dest':''}">
+    <div class="avatar" aria-hidden="true">${esc(iniciales(p.nombre))}</div>
+    <div>
+      <div class="tags">${p.destacado?'<span class="tag gold">Saludo destacado</span>':''}<span class="tag ej">Ejemplo</span></div>
+      <h3>${esc(p.nombre)}</h3>
+      <div class="sector">${esc(p.sector)}</div>
+      ${p.msg?`<p class="msg">“${esc(p.msg)}”</p>`:''}
+      <div class="de">— ${esc(p.de)}</div>
+    </div>
+  </article>`).join('');
+
+const textoCompartir = `🎉 Cumpleañeros de hoy, ${hoy.getDate()} de ${MESES[hoy.getMonth()]}:\n` + lista.map(p => `🎂 ${p.nombre}`).join('\n') + `\n\nVer y felicitar 👉 https://rocimarmorales.com/cumpleanos`;
+document.getElementById('share').href = `https://wa.me/?text=${encodeURIComponent(textoCompartir)}`;
+
+// Formulario
+const dia = document.getElementById('f-dia'), mes = document.getElementById('f-mes');
+for (let d=1; d<=31; d++) dia.add(new Option(d, d));
+MESES.forEach((m,i) => mes.add(new Option(m[0].toUpperCase()+m.slice(1), i)));
+dia.value = hoy.getDate(); mes.value = hoy.getMonth();
+
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  const err = document.getElementById('error');
+  if (!v('f-nombre') || !v('f-de')) { err.textContent = 'Escribe el nombre del cumpleañero y quién lo envía.'; return; }
+  if (!document.getElementById('f-ok').checked) { err.textContent = 'Confirma que tienes permiso para publicar su nombre y foto.'; return; }
+  err.textContent = '';
+  const texto = [
+    'Hola Rocimar, quiero inscribir a un cumpleañero:',
+    `🎂 Nombre: ${v('f-nombre')}`,
+    `📅 Día: ${dia.value} de ${MESES[mes.value]}`,
+    v('f-sector') ? `📍 Sector: ${v('f-sector')}` : '',
+    v('f-msg') ? `💬 Mensaje: ${v('f-msg')}` : '',
+    `✍️ Lo envía: ${v('f-de')}`,
+    document.getElementById('f-dest').checked ? '⭐ Quiero el Saludo destacado' : '',
+    '✅ Tengo permiso para publicar su nombre y foto.',
+    '(Adjunto la foto)',
+  ].filter(Boolean).join('\n');
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+});
+</script>
+</body>
+</html>
