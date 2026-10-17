@@ -23,6 +23,10 @@
     {
       "source": "/cabimas-y-su-gente/talento-venezolano-new-york-fashion-week",
       "destination": "/cabimas-nyfw-2026.html"
+    },
+    {
+      "source": "/clasificados",
+      "destination": "/clasificados.html"
     }
   ],
   "functions": {

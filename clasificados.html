@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clasificados y Empleos — Rocimar Morales · Cabimas</title>
+<meta name="description" content="Empleos, ventas, alquileres y servicios en Cabimas y la Costa Oriental del Lago. Publica tu aviso con Rocimar Morales.">
+<link rel="canonical" href="https://rocimarmorales.com/clasificados">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rocimar Morales">
+<meta property="og:title" content="Clasificados y Empleos — Cabimas y la COL">
+<meta property="og:description" content="Empleos, ventas, alquileres y servicios en Cabimas y la Costa Oriental del Lago.">
+<meta property="og:url" content="https://rocimarmorales.com/clasificados">
+<meta property="og:image" content="https://rocimarmorales.com/rocimar-portada.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Manrope:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0c0b0a;--ink2:#151310;--paper:#f6f3ee;--gold:#c9973a;--petroleo:#1a5276;--petroleo-claro:#6fa8d6;--muted:rgba(246,243,238,.55);--line:rgba(246,243,238,.09);--wa:#25d366;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Manrope',sans-serif;background:var(--ink);color:var(--paper);line-height:1.6;overflow-x:hidden;}
+a{color:inherit}
+nav{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 max(20px,env(safe-area-inset-right,0px)) 0 max(20px,env(safe-area-inset-left,0px));background:rgba(12,11,10,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--gold);text-decoration:none;}
+.nav-logo span{color:rgba(246,243,238,.4);font-weight:300;}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,243,238,.45);text-decoration:none;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.hero{padding:72px max(20px,6vw) 56px;border-bottom:1px solid rgba(201,151,58,.2);position:relative;overflow:hidden;}
+.hero-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+.hero-tag::before{content:'';width:28px;height:1px;background:var(--gold);opacity:.6;}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(44px,7vw,92px);line-height:.95;letter-spacing:-.02em;}
+h1 em{display:block;font-style:italic;color:var(--gold);}
+.hero p{margin-top:22px;max-width:56ch;color:var(--muted);font-size:15px;}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font-family:inherit;}
+.btn-gold{background:var(--gold);color:var(--ink);}
+.btn-wa{background:transparent;border-color:rgba(37,211,102,.55);color:var(--wa);}
+.btn:focus-visible,.chip:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+main{max-width:1180px;margin:0 auto;padding:48px max(20px,4vw) 96px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:48px;align-items:start;}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+.chip{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;}
+.chip[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);background:rgba(201,151,58,.08);}
+.lista{display:flex;flex-direction:column;gap:2px;}
+.aviso{background:var(--ink2);border:1px solid var(--line);padding:20px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px;align-items:start;}
+.aviso.destacado{border-color:rgba(201,151,58,.55);background:linear-gradient(90deg,rgba(201,151,58,.07),transparent 60%),var(--ink2);}
+.aviso-meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(246,243,238,.45);}
+.cat{color:var(--petroleo-claro);}
+.badge{color:var(--ink);background:var(--gold);padding:2px 8px;border-radius:999px;letter-spacing:.06em;}
+.ejemplo{border:1px dashed rgba(246,243,238,.3);padding:1px 8px;border-radius:999px;}
+.aviso h3{font-size:17px;font-weight:700;line-height:1.35;min-width:0;}
+.aviso p{grid-column:1;color:var(--muted);font-size:14px;min-width:0;}
+.aviso .btn{grid-row:2/4;grid-column:2;align-self:center;padding:9px 16px;font-size:12px;}
+.vacio{color:var(--muted);padding:24px 0;}
+aside{position:sticky;top:88px;background:var(--ink2);border:1px solid rgba(201,151,58,.3);border-radius:12px;padding:26px;}
+aside h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1.05;margin-bottom:6px;}
+aside .nota{color:var(--muted);font-size:13.5px;margin-bottom:18px;}
+form{display:flex;flex-direction:column;gap:12px;}
+label{display:flex;flex-direction:column;gap:5px;font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,243,238,.55);}
+input,select,textarea{font-family:'Manrope',sans-serif;font-size:14px;color:var(--paper);background:var(--ink);border:1px solid rgba(246,243,238,.15);border-radius:8px;padding:10px 12px;text-transform:none;letter-spacing:0;}
+textarea{min-height:92px;resize:vertical;}
+.check{flex-direction:row;align-items:center;gap:10px;text-transform:none;letter-spacing:0;font-family:'Manrope',sans-serif;font-size:13.5px;color:var(--paper);}
+.check input{width:18px;height:18px;accent-color:var(--gold);}
+form .btn{justify-content:center;margin-top:4px;}
+.error{color:#f0a08f;font-size:13px;min-height:1em;}
+.canal{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);}
+.canal a{color:var(--wa);font-weight:700;text-decoration:none;}
+footer{border-top:1px solid var(--line);padding:28px max(20px,4vw);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:rgba(246,243,238,.4);}
+footer b{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.05rem;}
+@media (max-width:900px){main{grid-template-columns:1fr;}aside{position:static;}.nav-links{display:none;}}
+@media (max-width:560px){.aviso{grid-template-columns:1fr;}.aviso .btn{grid-row:auto;grid-column:1;justify-self:start;margin-top:8px;}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Rocimar <span>Morales</span></a>
+  <div class="nav-links"><a href="/noticias">Noticias</a><a href="/cabimas-y-su-gente">Cabimas y su Gente</a><a href="/clasificados" class="active">Clasificados</a></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Cabimas · Costa Oriental del Lago</div>
+  <h1>Clasificados<em>y Empleos</em></h1>
+  <p>Ofertas de trabajo, ventas, alquileres y servicios de nuestra zona. Cada aviso pasa por la revisión del equipo de Rocimar Morales antes de publicarse.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-gold" href="#publicar">Publicar mi aviso →</a>
+    <a class="btn btn-wa" href="https://whatsapp.com/channel/0029VaCr6fkK0IBmSADPtV04" target="_blank" rel="noopener">Empleos de la semana en mi Canal</a>
+  </div>
+</section>
+
+<main>
+  <section aria-label="Avisos">
+    <div class="filtros" role="group" aria-label="Filtrar por categoría">
+      <button class="chip" aria-pressed="true" data-cat="todos">Todos</button>
+      <button class="chip" aria-pressed="false" data-cat="Empleo">Empleos</button>
+      <button class="chip" aria-pressed="false" data-cat="Venta">Ventas</button>
+      <button class="chip" aria-pressed="false" data-cat="Alquiler">Alquileres</button>
+      <button class="chip" aria-pressed="false" data-cat="Servicio">Servicios</button>
+    </div>
+    <div class="lista" id="lista"></div>
+  </section>
+
+  <aside id="publicar">
+    <h2>Publica tu aviso</h2>
+    <p class="nota">Llena los datos y envíalos por WhatsApp. Te respondemos con el presupuesto y la fecha de publicación.</p>
+    <form id="form" novalidate>
+      <label for="f-cat">Tipo de aviso
+        <select id="f-cat" required>
+          <option value="Empleo">Empleo (busco personal)</option>
+          <option value="Venta">Venta</option>
+          <option value="Alquiler">Alquiler</option>
+          <option value="Servicio">Servicio</option>
+        </select>
+      </label>
+      <label for="f-titulo">Título del aviso
+        <input id="f-titulo" maxlength="80" placeholder="Ej.: Se busca cajera con experiencia" required>
+      </label>
+      <label for="f-desc">Descripción
+        <textarea id="f-desc" maxlength="500" placeholder="Requisitos, precio, horario, dirección…" required></textarea>
+      </label>
+      <label for="f-zona">Zona
+        <input id="f-zona" maxlength="60" placeholder="Ej.: Cabimas, sector Las 40">
+      </label>
+      <label for="f-contacto">Nombre del negocio o persona
+        <input id="f-contacto" maxlength="60" required>
+      </label>
+      <label class="check" for="f-dest"><input type="checkbox" id="f-dest">Quiero que mi aviso salga destacado</label>
+      <div class="error" id="error" role="alert"></div>
+      <button class="btn btn-gold" type="submit">Enviar por WhatsApp →</button>
+    </form>
+    <div class="canal">Cada lunes publicamos los <strong>Empleos de la semana</strong> en el <a href="https://whatsapp.com/channel/0029VaCr6fkK0IBmSADPtV04" target="_blank" rel="noopener">Canal de WhatsApp</a>.</div>
+  </aside>
+</main>
+
+<footer><div><b>Rocimar Morales</b> · rocimarmorales.com</div><div>La voz de la zona petrolera</div></footer>
+
+<script>
+// Avisos de ejemplo para la vista previa. En la versión real se cargan los avisos aprobados.
+const AVISOS = [
+  {cat:'Empleo', titulo:'Se busca cajera con experiencia', desc:'Supermercado en el centro de Cabimas. Turno diurno, pago semanal. Llevar currículum.', zona:'Cabimas centro', contacto:'Supermercado (ejemplo)', destacado:true, ejemplo:true},
+  {cat:'Servicio', titulo:'Reparación de aires acondicionados a domicilio', desc:'Mantenimiento, carga de gas e instalación. Presupuesto sin compromiso.', zona:'Cabimas y Santa Rita', contacto:'Técnico (ejemplo)', destacado:false, ejemplo:true},
+  {cat:'Alquiler', titulo:'Local comercial en avenida principal', desc:'40 m², baño propio y estacionamiento. Ideal para tienda u oficina.', zona:'Av. Intercomunal', contacto:'Propietario (ejemplo)', destacado:false, ejemplo:true},
+  {cat:'Empleo', titulo:'Se necesita mesonero para fines de semana', desc:'Restaurante familiar. Viernes a domingo, horario nocturno.', zona:'Tía Juana', contacto:'Restaurante (ejemplo)', destacado:false, ejemplo:true},
+  {cat:'Venta', titulo:'Se vende nevera de dos puertas', desc:'Usada, en buen estado. Funciona perfectamente.', zona:'Ciudad Ojeda', contacto:'Particular (ejemplo)', destacado:false, ejemplo:true},
+];
+const WA = '584141675017';
+const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let filtro = 'todos';
+
+function pintar(){
+  const lista = document.getElementById('lista');
+  const items = AVISOS.filter(a => filtro === 'todos' || a.cat === filtro)
+    .sort((a,b) => (b.destacado?1:0) - (a.destacado?1:0));
+  if (!items.length){ lista.innerHTML = '<p class="vacio">Todavía no hay avisos en esta categoría. ¡Publica el primero!</p>'; return; }
+  lista.innerHTML = items.map(a => {
+    const msg = encodeURIComponent(`Hola, vi en rocimarmorales.com el aviso "${a.titulo}" y me interesa.`);
+    return `<article class="aviso${a.destacado?' destacado':''}">
+      <div class="aviso-meta"><span class="cat">${esc(a.cat)}</span>${a.zona?`<span>📍 ${esc(a.zona)}</span>`:''}${a.destacado?'<span class="badge">Destacado</span>':''}${a.ejemplo?'<span class="ejemplo">Ejemplo</span>':''}</div>
+      <h3>${esc(a.titulo)}</h3>
+      <p>${esc(a.desc)}</p>
+      <a class="btn btn-wa" href="https://wa.me/${WA}?text=${msg}" target="_blank" rel="noopener">Me interesa</a>
+    </article>`;
+  }).join('');
+}
+
+document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
+  filtro = b.dataset.cat;
+  document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  pintar();
+}));
+
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  const err = document.getElementById('error');
+  if (!v('f-titulo') || !v('f-desc') || !v('f-contacto')) { err.textContent = 'Completa el título, la descripción y el nombre para enviar tu aviso.'; return; }
+  err.textContent = '';
+  const texto = [
+    'Hola Rocimar, quiero publicar un aviso en Clasificados:',
+    `• Tipo: ${v('f-cat')}`,
+    `• Título: ${v('f-titulo')}`,
+    `• Descripción: ${v('f-desc')}`,
+    v('f-zona') ? `• Zona: ${v('f-zona')}` : '',
+    `• Anunciante: ${v('f-contacto')}`,
+    document.getElementById('f-dest').checked ? '• Quiero que salga destacado' : '',
+  ].filter(Boolean).join('\n');
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+});
+
+pintar();
+</script>
+</body>
+</html>
