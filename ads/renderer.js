@@ -16,10 +16,9 @@
       const config = await res.json();
       campaigns = Array.isArray(config.campaigns) ? config.campaigns : [];
     } catch { return; }
-    const now = Date.now();
     targets.forEach(target => {
       const slot = target.dataset.rocimarAd;
-      const eligible = campaigns.filter(a => a && a.slot===slot && safeUrl(a.url) && safeUrl(a.image) && (!a.start || Date.parse(a.start)<=now) && (!a.end || Date.parse(a.end)>now));
+      const eligible = campaigns.filter(a => a && a.slot===slot && safeUrl(a.url) && safeUrl(a.image));
       if (!eligible.length) return;
       const ad = eligible[Math.floor(Math.random()*eligible.length)];
       const link = document.createElement('a');
