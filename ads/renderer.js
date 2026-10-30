@@ -5,7 +5,7 @@
   const css = document.createElement('style');
   css.textContent = '.rocimar-ad{margin:22px auto;max-width:1100px}.rocimar-ad__label{display:block;font:10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#697985;margin-bottom:6px}.rocimar-ad__link{display:block;border:1px solid #e6e1d8;border-radius:8px;overflow:hidden;background:#f6f3ee}.rocimar-ad__image{display:block;width:100%;height:auto;max-height:420px;object-fit:contain}.rocimar-ad__link:focus-visible{outline:3px solid #b58b4c;outline-offset:3px}@media(max-width:740px){.rocimar-ad{margin:16px 12px}.rocimar-ad__image{max-height:320px}}';
   css.textContent += '.rocimar-ad[data-rocimar-ad="home-top"]{max-width:960px;padding:12px 16px 20px}.rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link{display:flex;justify-content:center;align-items:center;min-height:0;background:#fff}.rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{width:auto;max-width:100%;height:auto;max-height:460px;object-fit:contain}@media(max-width:740px){.rocimar-ad[data-rocimar-ad="home-top"]{padding:8px 0 14px}.rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{max-height:360px}}';
-  css.textContent += '.rocimar-ad--available{margin:20px auto;max-width:1100px}.rocimar-ad__available-link{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px;text-align:center;min-height:128px;padding:24px 18px;border:1.5px dashed #bb965d;border-radius:10px;background:linear-gradient(110deg,#f9f6ef,#f0e9dd);color:#17374b;text-decoration:none;font:600 15px Arial,sans-serif}.rocimar-ad__available-link strong{font:700 clamp(18px,2.5vw,28px) Georgia,serif}.rocimar-ad__available-link small{font:400 13px Arial,sans-serif;color:#556875}.rocimar-ad__available-link:focus-visible{outline:3px solid #b58b4c;outline-offset:3px}.rocimar-ad--available[data-rocimar-ad="news-inline"] .rocimar-ad__available-link,.rocimar-ad--available[data-rocimar-ad="news-sidebar"] .rocimar-ad__available-link{min-height:150px}@media(max-width:740px){.rocimar-ad__available-link{min-height:105px;padding:18px 12px}}';
+  css.textContent += '.rocimar-ad--available{margin:20px auto;max-width:1100px}.rocimar-ad__available-link{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;min-height:180px;padding:26px 20px;overflow:hidden;border:2px solid #c18a25;border-radius:16px;background:radial-gradient(ellipse at 50% 36%,#fff4cf 0%,#f5d78c 54%,#d79a37 100%);color:#082d4c;text-decoration:none;box-shadow:inset 0 0 0 3px rgba(255,249,226,.55);font-family:Arial,sans-serif}.rocimar-ad__available-link::after{content:"";position:absolute;inset:auto -8% -42% -8%;height:58%;border-top:2px solid rgba(255,255,255,.65);border-radius:50%;transform:rotate(-4deg);pointer-events:none}.rocimar-ad__available-icon{font-size:25px;line-height:1}.rocimar-ad__available-kicker{font:700 11px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}.rocimar-ad__available-link strong{position:relative;z-index:1;font:700 clamp(20px,3vw,38px) Georgia,serif;line-height:1.13;max-width:90%}.rocimar-ad__available-cta{position:relative;z-index:1;display:inline-block;background:#092e4c;color:#fff;border:1px solid #bd8a32;border-radius:40px;padding:11px 24px;font:700 12px Arial,sans-serif;letter-spacing:.07em;text-transform:uppercase}.rocimar-ad__available-link:focus-visible{outline:3px solid #0c4e7d;outline-offset:3px}.rocimar-ad--available[data-rocimar-ad="home-top"] .rocimar-ad__available-link{min-height:250px}.rocimar-ad--available[data-rocimar-ad="news-between"] .rocimar-ad__available-link{min-height:205px}.rocimar-ad--available[data-rocimar-ad="news-inline"] .rocimar-ad__available-link{min-height:200px}.rocimar-ad--available[data-rocimar-ad="news-sidebar"] .rocimar-ad__available-link{min-height:260px}.rocimar-ad--available[data-rocimar-ad="cabimas"] .rocimar-ad__available-link{min-height:210px}@media(max-width:740px){.rocimar-ad--available{margin:16px 12px}.rocimar-ad__available-link,.rocimar-ad--available[data-rocimar-ad] .rocimar-ad__available-link{min-height:150px;padding:20px 12px;gap:7px}.rocimar-ad__available-link strong{font-size:clamp(18px,5vw,27px)}.rocimar-ad__available-kicker{font-size:9px}.rocimar-ad__available-cta{font-size:10px;padding:9px 16px}}';
   document.head.appendChild(css);
   const safeUrl = value => { try { const u = new URL(value, location.origin); return u.protocol === 'https:' ? u.href : null; } catch { return null; } };
   async function render() {
@@ -17,17 +17,21 @@
       if (!res.ok) return;
       const config = await res.json();
       campaigns = Array.isArray(config.campaigns) ? config.campaigns : [];
-    } catch { return; }
+    } catch { campaigns = []; }
     targets.forEach(target => {
       const slot = target.dataset.rocimarAd;
       const eligible = campaigns.filter(a => a && a.slot===slot && safeUrl(a.url) && safeUrl(a.image));
       if (!eligible.length) {
         const label=document.createElement('span');label.className='rocimar-ad__label';label.textContent='Espacio publicitario disponible';
-        const link=document.createElement('a');link.className='rocimar-ad__available-link';link.href='/cabimas-y-su-gente.html#publicidad';
+        const link=document.createElement('a');link.className='rocimar-ad__available-link';
+        const message='Hola, deseo información sobre los espacios publicitarios de Rocimar Morales ('+slot+').';
+        link.href='https://wa.me/584141675017?text='+encodeURIComponent(message);
+        link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Solicitar información sobre publicidad por WhatsApp');
+        const icon=document.createElement('span');icon.className='rocimar-ad__available-icon';icon.setAttribute('aria-hidden','true');icon.textContent='◖)))';
+        const kicker=document.createElement('span');kicker.className='rocimar-ad__available-kicker';kicker.textContent='Espacio publicitario disponible';
         const title=document.createElement('strong');title.textContent='Tu negocio puede anunciarse aquí';
-        const detail=document.createElement('small');detail.textContent='Conoce los patrocinios Bronce, Plata y Oro de Rocimar Morales';
-        const action=document.createElement('span');action.textContent='Solicita información publicitaria →';
-        link.append(title,detail,action);target.replaceChildren(label,link);target.classList.add('rocimar-ad','rocimar-ad--available');return;
+        const action=document.createElement('span');action.className='rocimar-ad__available-cta';action.textContent='Solicita información ↗';
+        link.append(icon,kicker,title,action);target.replaceChildren(label,link);target.classList.add('rocimar-ad','rocimar-ad--available');return;
       }
       const ad = eligible[Math.floor(Math.random()*eligible.length)];
       const link = document.createElement('a');
