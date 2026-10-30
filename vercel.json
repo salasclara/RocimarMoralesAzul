@@ -28,6 +28,9 @@
   "functions": {
     "api/noticia.js": {
       "includeFiles": "noticias.html"
+    },
+    "api/ads.js": {
+      "includeFiles": "ads/config.json"
     }
   }
 }
