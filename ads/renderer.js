@@ -26,6 +26,14 @@
       const image=document.createElement('img'); image.className='rocimar-ad__image'; image.src=safeUrl(ad.image); image.alt=String(ad.alt||ad.name||'Anuncio publicitario').slice(0,140); image.loading='lazy'; image.decoding='async';
       const label=document.createElement('span'); label.className='rocimar-ad__label'; label.textContent='Publicidad';
       link.appendChild(image); target.replaceChildren(label,link); target.classList.add('rocimar-ad');
+      const report = type => fetch('/api/ads-event', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:ad.id,type}),keepalive:true}).catch(()=>{});
+      link.addEventListener('click',()=>report('click'));
+      if('IntersectionObserver' in window) {
+        const observer=new IntersectionObserver(entries=>{
+          if(entries.some(e=>e.intersectionRatio>=0.5)){report('impression');observer.disconnect();}
+        },{threshold:0.5});
+        observer.observe(target);
+      }
     });
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',render,{once:true}); else render();
