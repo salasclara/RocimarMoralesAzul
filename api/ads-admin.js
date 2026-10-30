@@ -30,6 +30,10 @@ module.exports=async(req,res)=>{
    return response(res,200,{ok:true});
   }
   if(action==='session'&&req.method==='GET')return response(res,200,{authenticated:true});
+  if(action==='upload'&&req.method==='POST'){
+   const upstream=await fetch(SOURCE+'/ads/image',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(req.body||{}),signal:AbortSignal.timeout(15000)});
+   const data=await upstream.json();return response(res,upstream.status,upstream.ok?{url:SOURCE+'/ads/image?id='+encodeURIComponent(data.id)}:data);
+  }
   const allowed={campaigns:['GET','POST','PATCH'],stats:['GET']};
   if(!allowed[action]?.includes(req.method))return response(res,405,{error:'Operación no permitida'});
   const id=String(req.query.id||'');
