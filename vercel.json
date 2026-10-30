@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/admin/publicidad",
+      "destination": "/admin/publicidad.html"
+    },
+    {
       "source": "/noticias",
       "destination": "/noticias.html"
     },
@@ -28,9 +32,6 @@
   "functions": {
     "api/noticia.js": {
       "includeFiles": "noticias.html"
-    },
-    "api/ads.js": {
-      "includeFiles": "ads/config.json"
     }
   }
 }
