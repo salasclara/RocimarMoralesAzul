@@ -1,6 +1,6 @@
 // ROCIMAR ADS administrator proxy. All secrets remain server-side on Vercel.
 const crypto=require('crypto');
-const SOURCE='https://rocimar-servidor-v2-production.up.railway.app';
+const SOURCE=(process.env.ROCIMAR_ADS_BACKEND_URL||'').replace(/\/$/,'');
 function response(res,status,data){res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');return res.status(status).json(data)}
 function secrets(){const password=process.env.ROCIMAR_ADS_PASSWORD,signing=process.env.ROCIMAR_ADS_COOKIE_SECRET,token=process.env.ROCIMAR_ADS_ADMIN_TOKEN;if(!password||password.length<16||!signing||signing.length<32||!token||token.length<32)throw Error('Ads secrets missing');return {password,signing,token}}
 function equal(a,b){const x=crypto.createHash('sha256').update(a).digest(),y=crypto.createHash('sha256').update(b).digest();return crypto.timingSafeEqual(x,y)}
@@ -9,6 +9,7 @@ function authorized(req,key){try{const raw=(req.headers.cookie||'').split(';').m
 function sameOrigin(req){try{const origin=new URL(req.headers.origin);const host=req.headers['x-forwarded-host']||req.headers.host;return origin.protocol==='https:'&&origin.host===host}catch{return false}}
 module.exports=async(req,res)=>{
  try{
+  if(!process.env.ROCIMAR_ADS_BACKEND_URL)throw Error('Ads backend not configured');
   const {password,signing,token}=secrets();
   const action=String(req.query.action||'');
   if(req.method!=='GET'&&!sameOrigin(req))return response(res,403,{error:'Origen no permitido'});
