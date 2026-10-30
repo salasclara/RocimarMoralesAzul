@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "slots": [
+    {
+      "id": "home-top",
+      "label": "Portada principal"
+    },
+    {
+      "id": "news-inline",
+      "label": "Noticias"
+    },
+    {
+      "id": "news-sidebar",
+      "label": "Lateral noticias"
+    },
+    {
+      "id": "news-between",
+      "label": "Entre noticias"
+    },
+    {
+      "id": "cabimas",
+      "label": "Cabimas y su Gente"
+    }
+  ],
+  "campaigns": []
+}
