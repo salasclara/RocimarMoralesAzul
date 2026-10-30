@@ -36,3 +36,13 @@ En **Vercel** (proyecto web):
 ## Enlaces
 - Web PR: https://github.com/salasclara/RocimarMoralesAzul/pull/22
 - Backend PR: https://github.com/salasclara/rocimar-servidor-v2/pull/2
+
+## Métricas y seguridad — actualización
+- `/api/ads-event` recibe eventos desde la web y los remite al servidor con credenciales de servidor; PostgreSQL limita eventos repetidos por identificador derivado (hash HMAC) y ventana de tiempo.
+- El panel `/admin/publicidad` utiliza cookie firmada, `HttpOnly`, `Secure`, `SameSite=Strict` y vencimiento de cuatro horas.
+- El inicio de sesión consulta el límite de intentos almacenado en PostgreSQL; si Railway no responde, no permite iniciar sesión.
+- Las impresiones son aproximaciones basadas en visibilidad del banner, no usuarios únicos certificados ni datos facturables auditados.
+- Los eventos no registran direcciones IP sin procesar; se utilizan identificadores derivados para limitar abusos.
+- Las migraciones `ads/schema.sql` del repositorio **backend** incluyen la tabla adicional `rocimar_ads_rate_limits`.
+- Se añadieron verificaciones automáticas de sintaxis en GitHub Actions; **su existencia no significa que hayan pasado**.
+- Antes de activar campañas: comprobar en Vercel Preview el despliegue, probar login y bloqueo, insertar campaña de prueba, visualizar un anuncio, registrar un clic, consultar conteos y verificar las noticias.
