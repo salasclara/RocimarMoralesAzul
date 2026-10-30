@@ -1,5 +1,5 @@
 const crypto=require('crypto');
-const SOURCE='https://rocimar-servidor-v2-production.up.railway.app';
+const SOURCE=(process.env.ROCIMAR_ADS_BACKEND_URL||'').replace(/\/$/,'');
 function hash(value,secret){return crypto.createHmac('sha256',secret).update(value).digest('hex')}
 module.exports=async(req,res)=>{
  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');
@@ -8,6 +8,7 @@ module.exports=async(req,res)=>{
  if(!origin||!host||origin!=='https://'+host)return res.status(403).json({error:'Origen no permitido'});
  const id=String(req.body?.id||''),type=req.body?.type;
  if(!/^[0-9a-f-]{36}$/i.test(id)||!['impression','click'].includes(type))return res.status(400).json({error:'Evento inválido'});
+ if(!process.env.ROCIMAR_ADS_BACKEND_URL)return res.status(503).json({error:'Servidor de anuncios no configurado'});
  const token=process.env.ROCIMAR_ADS_ADMIN_TOKEN,secret=process.env.ROCIMAR_ADS_COOKIE_SECRET;
  if(!token||token.length<32||!secret||secret.length<32)return res.status(503).json({error:'Medición no configurada'});
  const ip=String(req.headers['x-forwarded-for']||'').split(',')[0].trim().slice(0,100);
