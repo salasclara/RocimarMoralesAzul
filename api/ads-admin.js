@@ -17,7 +17,7 @@ module.exports=async(req,res)=>{
    const ip=String(req.headers['x-forwarded-for']||'').split(',')[0].trim().slice(0,100);
    const key=crypto.createHmac('sha256',signing).update('login|'+ip).digest('hex');
    const limited=await fetch(SOURCE+'/ads/limit',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({key,kind:'login'}),signal:AbortSignal.timeout(5000)});
-   if(!limited.ok)throw Error('Login limiter unavailable');
+   if(!limited.ok){console.error('ads login limiter status:',limited.status);return response(res,503,{error:'No se pudo validar el acceso con Railway',codigo:limited.status===401?'TOKEN_RAILWAY':limited.status===503?'BASE_DATOS_RAILWAY':'RAILWAY_'+limited.status})}
    if(!(await limited.json()).allowed)return response(res,429,{error:'Demasiados intentos. Inténtalo en 15 minutos'});
    if(!equal(String(req.body?.password||''),password))return response(res,401,{error:'Credenciales incorrectas'});
    const body=Buffer.from(JSON.stringify({admin:true,exp:Date.now()+4*3600000})).toString('base64url');
