@@ -13,6 +13,11 @@ module.exports=async(req,res)=>{
   const action=String(req.query.action||'');
   if(req.method!=='GET'&&!sameOrigin(req))return response(res,403,{error:'Origen no permitido'});
   if(action==='login'&&req.method==='POST'){
+   const ip=String(req.headers['x-forwarded-for']||'').split(',')[0].trim().slice(0,100);
+   const key=crypto.createHmac('sha256',signing).update('login|'+ip).digest('hex');
+   const limited=await fetch(SOURCE+'/ads/limit',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({key,kind:'login'}),signal:AbortSignal.timeout(5000)});
+   if(!limited.ok)throw Error('Login limiter unavailable');
+   if(!(await limited.json()).allowed)return response(res,429,{error:'Demasiados intentos. Inténtalo en 15 minutos'});
    if(!equal(String(req.body?.password||''),password))return response(res,401,{error:'Credenciales incorrectas'});
    const body=Buffer.from(JSON.stringify({admin:true,exp:Date.now()+4*3600000})).toString('base64url');
    res.setHeader('Set-Cookie','rocimar_ads='+body+'.'+sig(body,signing)+'; Path=/api/ads-admin; HttpOnly; Secure; SameSite=Strict; Max-Age=14400');
