@@ -2,7 +2,7 @@
 const crypto=require('crypto');
 const SOURCE=(process.env.ROCIMAR_ADS_BACKEND_URL||'').replace(/\/$/,'');
 function response(res,status,data){res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');return res.status(status).json(data)}
-function secrets(){const password=process.env.ROCIMAR_ADS_PASSWORD,signing=process.env.ROCIMAR_ADS_COOKIE_SECRET,token=process.env.ROCIMAR_ADS_ADMIN_TOKEN;if(!password||password.length<16||!signing||signing.length<32||!token||token.length<32)throw Error('Ads secrets missing');return {password,signing,token}}
+function secrets(){const password=process.env.ROCIMAR_ADS_PASSWORD,signing=process.env.ROCIMAR_ADS_COOKIE_SECRET,token=process.env.ROCIMAR_ADS_ADMIN_TOKEN;if(!password||password.length<16||!signing||signing.length<32||!token||token.length<32)throw Error('Ads secrets missing or too short');return {password,signing,token}}
 function equal(a,b){const x=crypto.createHash('sha256').update(a).digest(),y=crypto.createHash('sha256').update(b).digest();return crypto.timingSafeEqual(x,y)}
 function sig(s,key){return crypto.createHmac('sha256',key).update(s).digest('base64url')}
 function authorized(req,key){try{const raw=(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith('rocimar_ads='));if(!raw)return false;const [body,signature]=raw.slice('rocimar_ads='.length).split('.');if(!body||!signature||!equal(signature,sig(body,key)))return false;const data=JSON.parse(Buffer.from(body,'base64url').toString('utf8'));return data.admin===true&&data.exp>Date.now()}catch{return false}}
@@ -38,5 +38,5 @@ module.exports=async(req,res)=>{
   const upstream=await fetch(SOURCE+path,{method:req.method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},...(req.method==='GET'?{}:{body:JSON.stringify(req.body||{})}),signal:AbortSignal.timeout(7000)});
   const result=await upstream.json();
   return response(res,upstream.status,result);
- }catch(e){console.error('ads admin:',e.message);return response(res,503,{error:'Administración no disponible; revisar configuración'})}
+ }catch(e){console.error('ads admin:',e.message);return response(res,503,{error:'Administración no disponible',codigo:e.message.startsWith('Ads secrets missing')?'CONFIG_SECRETOS':e.message==='Ads backend not configured'?'CONFIG_BACKEND':e.message==='Login limiter unavailable'?'LIMITE_RAILWAY':'CONEXION_RAILWAY'})}
 };
