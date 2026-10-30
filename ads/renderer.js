@@ -14,7 +14,7 @@
     let campaigns;
     try {
       const res = await fetch('/api/ads', {cache:'no-store'});
-      if (!res.ok) return;
+      if (!res.ok) throw Error('Ads unavailable');
       const config = await res.json();
       campaigns = Array.isArray(config.campaigns) ? config.campaigns : [];
     } catch { campaigns = []; }
@@ -27,7 +27,7 @@
         const message='Hola, deseo información sobre los espacios publicitarios de Rocimar Morales ('+slot+').';
         link.href='https://wa.me/584141675017?text='+encodeURIComponent(message);
         link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Solicitar información sobre publicidad por WhatsApp');
-        const icon=document.createElement('span');icon.className='rocimar-ad__available-icon';icon.setAttribute('aria-hidden','true');icon.textContent='◖)))';
+        const icon=document.createElement('span');icon.className='rocimar-ad__available-icon';icon.setAttribute('aria-hidden','true');icon.textContent='📣';
         const kicker=document.createElement('span');kicker.className='rocimar-ad__available-kicker';kicker.textContent='Espacio publicitario disponible';
         const title=document.createElement('strong');title.textContent='Tu negocio puede anunciarse aquí';
         const action=document.createElement('span');action.className='rocimar-ad__available-cta';action.textContent='Solicita información ↗';
