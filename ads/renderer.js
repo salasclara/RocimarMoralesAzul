@@ -32,6 +32,13 @@
     'body > .rocimar-ad--available[data-rocimar-ad="news-between"] .rocimar-ad__available-cta,body > .rocimar-ad--available[data-rocimar-ad="cabimas-top"] .rocimar-ad__available-cta{padding:6px 14px;font-size:10px}',
     '@media(max-width:740px){body > .rocimar-ad[data-rocimar-ad="news-between"],body > .rocimar-ad[data-rocimar-ad="cabimas-top"]{width:100%;max-width:none;margin:0 auto}body > .rocimar-ad--available[data-rocimar-ad="news-between"] .rocimar-ad__available-link,body > .rocimar-ad--available[data-rocimar-ad="cabimas-top"] .rocimar-ad__available-link{min-height:95px;padding:8px}}'
   ].join('');
+  // Full-bleed top strips in Noticias and Cabimas, with no external caption.
+  css.textContent += [
+    'body > .rocimar-ad[data-rocimar-ad="news-between"],body > .rocimar-ad[data-rocimar-ad="cabimas-top"]{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}',
+    'body > .rocimar-ad[data-rocimar-ad="news-between"] > .rocimar-ad__label,body > .rocimar-ad[data-rocimar-ad="cabimas-top"] > .rocimar-ad__label{display:none!important}',
+    'body > .rocimar-ad[data-rocimar-ad="news-between"] .rocimar-ad__link,body > .rocimar-ad[data-rocimar-ad="cabimas-top"] .rocimar-ad__link{width:100%!important;border-radius:0!important}',
+    'body > .rocimar-ad--available[data-rocimar-ad="news-between"] .rocimar-ad__available-link,body > .rocimar-ad--available[data-rocimar-ad="cabimas-top"] .rocimar-ad__available-link{width:100%;border-radius:0!important}'
+  ].join('');
   document.head.appendChild(css);
   const safeUrl = value => { try { const u = new URL(value, location.origin); return u.protocol === 'https:' ? u.href : null; } catch { return null; } };
   async function render() {
