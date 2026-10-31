@@ -57,6 +57,13 @@
     'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{position:relative;z-index:1;display:block!important;flex:0 1 auto!important;width:min(100%,1200px)!important;max-width:1200px!important;height:auto!important;max-height:none!important;object-fit:contain!important}',
     '@media(max-width:740px){body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{width:100%!important}}'
   ].join('');
+  // Final mobile polish: no duplicate labels and consistent edge-to-edge top strips.
+  css.textContent += [
+    '.rocimar-ad[data-rocimar-ad="cabimas"] > .rocimar-ad__label{display:none!important}',
+    '@media(max-width:740px){body > .rocimar-ad[data-rocimar-ad="home-top"],body > .rocimar-ad[data-rocimar-ad="news-between"],body > .rocimar-ad[data-rocimar-ad="cabimas-top"]{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}}',
+    '@media(max-width:740px){body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link,body > .rocimar-ad[data-rocimar-ad="news-between"] .rocimar-ad__link,body > .rocimar-ad[data-rocimar-ad="cabimas-top"] .rocimar-ad__link{border-radius:0!important}}',
+    '@media(max-width:740px){body > .rocimar-ad--available[data-rocimar-ad="news-between"] .rocimar-ad__available-link,body > .rocimar-ad--available[data-rocimar-ad="cabimas-top"] .rocimar-ad__available-link{padding:10px 8px!important;min-height:94px!important}}'
+  ].join('');
   document.head.appendChild(css);
   const safeUrl = value => { try { const u = new URL(value, location.origin); return u.protocol === 'https:' ? u.href : null; } catch { return null; } };
   async function render() {
