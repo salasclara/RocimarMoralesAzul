@@ -39,6 +39,13 @@
     'body > .rocimar-ad[data-rocimar-ad="news-between"] .rocimar-ad__link,body > .rocimar-ad[data-rocimar-ad="cabimas-top"] .rocimar-ad__link{width:100%!important;border-radius:0!important}',
     'body > .rocimar-ad--available[data-rocimar-ad="news-between"] .rocimar-ad__available-link,body > .rocimar-ad--available[data-rocimar-ad="cabimas-top"] .rocimar-ad__available-link{width:100%;border-radius:0!important}'
   ].join('');
+  // Full-width navy side panels; the creative remains at its natural aspect ratio.
+  css.textContent += [
+    'body > .rocimar-ad[data-rocimar-ad="home-top"]{width:100%!important;max-width:none!important;margin:0!important}',
+    'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;min-height:0!important;overflow:hidden;background:radial-gradient(ellipse at 8% 70%,rgba(0,112,232,.35),transparent 36%),radial-gradient(ellipse at 92% 25%,rgba(99,26,221,.35),transparent 36%),linear-gradient(110deg,#020b20,#061b42 45%,#030c26)!important;border:0!important;border-radius:0!important}',
+    'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{display:block!important;flex:0 1 auto!important;width:min(100%,1200px)!important;max-width:1200px!important;height:auto!important;max-height:none!important;object-fit:contain!important}',
+    '@media(max-width:740px){body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{width:100%!important}}'
+  ].join('');
   document.head.appendChild(css);
   const safeUrl = value => { try { const u = new URL(value, location.origin); return u.protocol === 'https:' ? u.href : null; } catch { return null; } };
   async function render() {
