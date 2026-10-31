@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "slots": [
+    {
+      "id": "home-top",
+      "label": "Portada principal"
+    },
+    {
+      "id": "news-sidebar",
+      "label": "Lateral noticias"
+    },
+    {
+      "id": "news-between",
+      "label": "Noticias cintillo superior"
+    },
+    {
+      "id": "cabimas",
+      "label": "Cabimas banner inferior"
+    },
+    {
+      "id": "cabimas-top",
+      "label": "Cabimas cintillo superior"
+    }
+  ],
+  "campaigns": []
+}
