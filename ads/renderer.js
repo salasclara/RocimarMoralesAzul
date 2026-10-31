@@ -46,6 +46,17 @@
     'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{display:block!important;flex:0 1 auto!important;width:min(100%,1200px)!important;max-width:1200px!important;height:auto!important;max-height:none!important;object-fit:contain!important}',
     '@media(max-width:740px){body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{width:100%!important}}'
   ].join('');
+  // Premium top strip: edge-to-edge, no label, no top gap, no stretched artwork.
+  css.textContent += [
+    'body > .rocimar-ad[data-rocimar-ad="home-top"]{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important}',
+    'body > .rocimar-ad[data-rocimar-ad="home-top"] > .rocimar-ad__label{display:none!important}',
+    'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link{position:relative;display:flex!important;align-items:center!important;justify-content:center!important;min-height:0!important;height:auto!important;aspect-ratio:auto!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;overflow:hidden!important;background:radial-gradient(ellipse at 0% 50%,rgba(0,119,255,.40),transparent 45%),radial-gradient(ellipse at 100% 50%,rgba(111,36,255,.40),transparent 45%),linear-gradient(110deg,#020a20,#06183b 50%,#020a20)!important}',
+    'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link:before,body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link:after{content:"";position:absolute;z-index:0;pointer-events:none;width:32%;height:100%;top:0;opacity:.7;background:repeating-linear-gradient(125deg,transparent 0 24px,rgba(0,145,255,.10) 25px,transparent 27px 52px)}',
+    'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link:before{left:0;mask-image:linear-gradient(to right,black,transparent)}',
+    'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link:after{right:0;transform:scaleX(-1);mask-image:linear-gradient(to right,black,transparent)}',
+    'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{position:relative;z-index:1;display:block!important;flex:0 1 auto!important;width:min(100%,1200px)!important;max-width:1200px!important;height:auto!important;max-height:none!important;object-fit:contain!important}',
+    '@media(max-width:740px){body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{width:100%!important}}'
+  ].join('');
   document.head.appendChild(css);
   const safeUrl = value => { try { const u = new URL(value, location.origin); return u.protocol === 'https:' ? u.href : null; } catch { return null; } };
   async function render() {
