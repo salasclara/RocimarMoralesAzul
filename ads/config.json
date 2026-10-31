@@ -6,20 +6,20 @@
       "label": "Portada principal"
     },
     {
-      "id": "news-inline",
-      "label": "Noticias"
-    },
-    {
       "id": "news-sidebar",
       "label": "Lateral noticias"
     },
     {
       "id": "news-between",
-      "label": "Entre noticias"
+      "label": "Noticias cintillo superior"
     },
     {
       "id": "cabimas",
-      "label": "Cabimas y su Gente"
+      "label": "Cabimas banner inferior"
+    },
+    {
+      "id": "cabimas-top",
+      "label": "Cabimas cintillo superior"
     }
   ],
   "campaigns": []
