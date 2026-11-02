@@ -1,0 +1,26 @@
+name: ROCIMAR ADS checks
+on:
+  pull_request:
+    paths:
+      - 'api/ads*.js'
+      - 'ads/**'
+      - 'admin/publicidad.html'
+      - 'vercel.json'
+  workflow_dispatch:
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check api/ads.js
+          node --check api/ads-admin.js
+          node --check api/ads-event.js
+          node --check ads/renderer.js
+      - name: Validate Vercel JSON and advertising slots
+        run: |
+          node -e "const fs=require('fs');const v=JSON.parse(fs.readFileSync('vercel.json'));if(!v.rewrites.some(x=>x.source==='/admin/publicidad'))process.exit(1);const c=JSON.parse(fs.readFileSync('ads/config.json'));if(c.slots.length!==5)process.exit(1);console.log('Ads config OK')"

@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/admin/publicidad",
+      "destination": "/admin/publicidad.html"
+    },
+    {
       "source": "/noticias",
       "destination": "/noticias.html"
     },
