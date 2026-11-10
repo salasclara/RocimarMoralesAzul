@@ -64,6 +64,8 @@
     '@media(max-width:740px){body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__link,body > .rocimar-ad[data-rocimar-ad="news-between"] .rocimar-ad__link,body > .rocimar-ad[data-rocimar-ad="cabimas-top"] .rocimar-ad__link{border-radius:0!important}}',
     '@media(max-width:740px){body > .rocimar-ad--available[data-rocimar-ad="news-between"] .rocimar-ad__available-link,body > .rocimar-ad--available[data-rocimar-ad="cabimas-top"] .rocimar-ad__available-link{padding:10px 8px!important;min-height:94px!important}}'
   ].join('');
+  // Full-width homepage creative: preserve natural aspect ratio without stretching.
+  css.textContent += 'body > .rocimar-ad[data-rocimar-ad="home-top"] .rocimar-ad__image{width:100%!important;max-width:none!important;height:auto!important;object-fit:contain!important}';
   document.head.appendChild(css);
   const safeUrl = value => { try { const u = new URL(value, location.origin); return u.protocol === 'https:' ? u.href : null; } catch { return null; } };
   async function render() {
