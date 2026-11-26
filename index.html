@@ -1329,6 +1329,32 @@ footer {
 }
 body > nav#mainNav { position:relative!important; top:auto!important; left:auto!important; right:auto!important; background:var(--warm); }
 </style>
+<style>
+.ads-unified{background:#f5f2eb;padding:clamp(16px,3vw,32px);border-radius:10px;color:#10223b}
+.ads-unified .ads-offer__eyebrow{color:#862b48;margin-bottom:8px}
+.ads-unified__title{font:700 clamp(30px,4vw,44px)/1.12 'Cormorant Garamond',serif;margin:0 0 12px}
+.ads-unified__title:after{content:"";display:block;width:42px;height:3px;background:#d4b34b;margin-top:12px}
+.ads-unified__summary{font:13px/1.65 Manrope,sans-serif;color:#59646b;margin:0 0 24px}
+.ads-unified .ads-plan{position:relative;background:#fff;color:#10223b;border:1px solid #d4b34b;border-radius:12px;padding:24px 16px;gap:0}
+.ads-unified .ads-plan--featured{background:#10223b;color:#fff}
+.ads-unified .ads-plan__tier{color:#65727b;letter-spacing:.1em}
+.ads-unified .ads-plan--featured .ads-plan__tier,.ads-unified .ads-plan--featured .ads-unified__sub{color:#e5c24b}
+.ads-unified .ads-plan h3{margin:4px 0;font-weight:700}
+.ads-unified__sub{font:12px/1.4 Manrope,sans-serif;margin:0 0 12px;color:#59646b}
+.ads-unified .ads-plan__intro{min-height:0;opacity:1;margin:0 0 16px}
+.ads-unified__tags{display:flex;flex-wrap:wrap;gap:5px}
+.ads-unified__tags span{font:10px/1.4 Manrope,sans-serif;padding:4px 8px;border:1px solid #ded7cc;border-radius:20px;background:#f5f2eb;color:#10223b}
+.ads-unified .ads-plan--featured .ads-unified__tags span{background:transparent;color:#fff;border-color:#d4b34b}
+.ads-unified .ads-plan ul{display:flex;flex-direction:column;gap:10px;margin:16px 0 24px}
+.ads-unified .ads-plan li:before{color:#16a65a}
+.ads-unified .ads-plan>a{margin-top:auto;background:#20cf60;color:#10223b;border-radius:30px;font-size:12px}
+.ads-unified .ads-plan>a:hover{background:#17b950}
+.ads-unified__badge{position:absolute;top:-11px;left:16px;background:#d4b34b;color:#10223b;border-radius:20px;padding:4px 10px;font:700 10px Manrope,sans-serif}
+.ads-unified__directory{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px;background:#f5f2eb;border:1px solid #d4b34b;border-radius:10px;color:#10223b}
+.ads-unified__directory p{font:12px/1.6 Manrope,sans-serif;margin:8px 0 0}
+.ads-unified__directory a{flex-shrink:0;max-width:100%;text-align:center;border:1px solid #10223b;border-radius:24px;padding:12px 16px;color:#10223b;text-decoration:none;font:700 12px Manrope,sans-serif}
+@media(max-width:900px){.ads-unified .ads-offer__plans{grid-template-columns:1fr;gap:22px}.ads-unified__directory{flex-direction:column;align-items:stretch}}
+</style>
 </head>
 <body>
 
@@ -1938,46 +1964,44 @@ body > nav#mainNav { position:relative!important; top:auto!important; left:auto!
         <div><strong>WhatsApp</strong><span>Estados y presencia en la comunidad</span></div>
         <div><strong>Resultados</strong><span>Seguimiento de impresiones y clics web</span></div>
       </div>
-      <p class="ads-offer__eyebrow">PLANES PUBLICITARIOS · COTIZACIÓN PERSONALIZADA</p>
-      <div class="ads-offer__plans">
-        <article class="ads-plan" style="--plan-accent:#1a5276">
-          <span class="ads-plan__tier">PUBLICIDAD EN HISTORIAS</span>
-          <h3>Historias</h3>
-          <p class="ads-plan__intro">Mantén tu negocio presente con promociones, novedades y ofertas en formatos breves.</p>
-          <ul>
-            <li>Historias de Instagram</li>
-            <li>Historias de Facebook</li>
-            <li>Estados de WhatsApp</li>
-            <li>Cuatro piezas publicitarias semanales en total, distribuidas entre los canales incluidos</li>
-          </ul>
-          <a href="https://wa.me/584141675017?text=Hola%20Rocimar%2C%20quiero%20recibir%20un%20presupuesto%20para%20el%20Plan%20Historias%20de%20publicidad." target="_blank" rel="noopener noreferrer">Solicitar presupuesto →</a>
-        </article>
-        <article class="ads-plan ads-plan--featured" style="--plan-accent:#c9973a">
-          <span class="ads-plan__tier">PUBLICIDAD EN FEED</span>
-          <h3>Feed</h3>
-          <p class="ads-plan__intro">Presenta tus productos y servicios mediante publicaciones para Instagram y Facebook.</p>
-          <ul>
-            <li>Publicaciones en el feed de Instagram</li>
-            <li>Publicaciones en el feed de Facebook</li>
-            <li>Cuatro piezas publicitarias semanales en total, distribuidas entre ambos canales</li>
-            <li>Promoción de productos, servicios, ofertas y novedades</li>
-          </ul>
-          <a href="https://wa.me/584141675017?text=Hola%20Rocimar%2C%20quiero%20recibir%20un%20presupuesto%20para%20el%20Plan%20Feed%20de%20publicidad." target="_blank" rel="noopener noreferrer">Solicitar presupuesto →</a>
-        </article>
-        <article class="ads-plan" style="--plan-accent:#c9973a">
-          <span class="ads-plan__tier">PLAN INTEGRAL</span>
-          <h3>Integral</h3>
-          <p class="ads-plan__intro">Combina redes sociales, WhatsApp y presencia en la página web de Rocimar Morales.</p>
-          <ul>
-            <li>Difusión en Instagram, Facebook y WhatsApp</li>
-            <li>Cuatro piezas publicitarias semanales en total entre los canales sociales contratados</li>
-            <li>Cintillo publicitario en rocimarmorales.com durante la semana contratada</li>
-            <li>Enlace del cintillo al destino comercial autorizado</li>
-          </ul>
-          <a href="https://wa.me/584141675017?text=Hola%20Rocimar%2C%20quiero%20recibir%20un%20presupuesto%20para%20el%20Plan%20Integral%20de%20publicidad." target="_blank" rel="noopener noreferrer">Solicitar presupuesto →</a>
-        </article>
+      <div class="ads-unified">
+        <p class="ads-offer__eyebrow">PLANES PUBLICITARIOS</p>
+        <h3 class="ads-unified__title">Elige cómo quieres que te vean</h3>
+        <p class="ads-unified__summary">Planes semanales con presupuesto personalizado. Cada plan incluye 4 piezas publicitarias por semana, en total entre los canales contratados.</p>
+        <div class="ads-offer__plans">
+          <article class="ads-plan">
+            
+            <span class="ads-plan__tier">PLAN</span>
+            <h3>Historias</h3>
+            <p class="ads-unified__sub">Historias y estados</p>
+            <p class="ads-plan__intro">Una opción para mantener tu negocio presente mediante promociones, novedades y ofertas en formatos breves y visuales.</p>
+            <div class="ads-unified__tags"><span>Historias de Instagram</span><span>Historias de Facebook</span><span>Estados de WhatsApp</span></div>
+            <ul><li>4 piezas publicitarias por semana en total, distribuidas entre los canales incluidos</li><li>Difusión en historias de Instagram y Facebook y en estados de WhatsApp</li><li>Promoción de productos, servicios, ofertas y novedades</li></ul>
+            <a href="https://wa.me/584141675017?text=Hola%20Rocimar%2C%20quiero%20recibir%20un%20presupuesto%20para%20el%20Plan%20Historias%20de%20publicidad." target="_blank" rel="noopener noreferrer">Solicitar presupuesto</a>
+          </article>
+          <article class="ads-plan">
+            
+            <span class="ads-plan__tier">PLAN</span>
+            <h3>Feed</h3>
+            <p class="ads-unified__sub">Publicaciones en el feed</p>
+            <p class="ads-plan__intro">Presenta tus productos y servicios mediante publicaciones diseñadas para destacar tu marca y sus novedades.</p>
+            <div class="ads-unified__tags"><span>Feed de Instagram</span><span>Feed de Facebook</span></div>
+            <ul><li>4 piezas publicitarias por semana en total, distribuidas entre los canales incluidos</li><li>Publicaciones en el feed de Instagram y de Facebook</li><li>Promoción de productos, servicios, ofertas y novedades</li></ul>
+            <a href="https://wa.me/584141675017?text=Hola%20Rocimar%2C%20quiero%20recibir%20un%20presupuesto%20para%20el%20Plan%20Feed%20de%20publicidad." target="_blank" rel="noopener noreferrer">Solicitar presupuesto</a>
+          </article>
+          <article class="ads-plan ads-plan--featured">
+            <span class="ads-unified__badge">Mayor presencia</span>
+            <span class="ads-plan__tier">PLAN</span>
+            <h3>Integral</h3>
+            <p class="ads-unified__sub">Redes sociales + cintillo web</p>
+            <p class="ads-plan__intro">Combina la promoción en redes sociales con presencia publicitaria en nuestra página web para ampliar los puntos de contacto con tu público.</p>
+            <div class="ads-unified__tags"><span>Instagram</span><span>Facebook</span><span>WhatsApp</span><span>Cintillo publicitario web</span></div>
+            <ul><li>4 piezas publicitarias por semana en total, distribuidas entre los canales sociales incluidos</li><li>Presencia mediante cintillo publicitario en rocimarmorales.com durante la semana contratada</li><li>Enlace del cintillo al destino comercial autorizado del anunciante</li></ul>
+            <a href="https://wa.me/584141675017?text=Hola%20Rocimar%2C%20quiero%20recibir%20un%20presupuesto%20para%20el%20Plan%20Integral%20de%20publicidad." target="_blank" rel="noopener noreferrer">Solicitar presupuesto</a>
+          </article>
+        </div>
       </div>
-      <p style="font:12px/1.7 Manrope,sans-serif;color:#59646b;margin:18px 0">Los planes son semanales y se cotizan según el plan y el alcance solicitado. Cada uno incluye cuatro piezas publicitarias por semana en total, no cuatro por cada canal. La inversión en Meta Ads se cotiza por separado. La publicidad no garantiza ventas ni una cantidad específica de visualizaciones. El cintillo web está incluido únicamente en el Plan Integral.</p><div class="ads-offer__foot"><div><strong>¿Necesitas una campaña especial?</strong><p>Para lanzamientos, eventos o formatos adicionales, preparamos una propuesta personalizada según el alcance y la disponibilidad.</p></div><a href="https://wa.me/584141675017?text=Hola%20Rocimar%2C%20deseo%20informaci%C3%B3n%20y%20presupuesto%20sobre%20una%20campa%C3%B1a%20personalizada%20de%20publicidad." target="_blank" rel="noopener noreferrer">Solicitar presupuesto →</a></div>
+      <p style="font:12px/1.7 Manrope,sans-serif;color:#59646b;margin:18px 0">Los planes son semanales y se cotizan según el plan y el alcance solicitado. Cada uno incluye cuatro piezas publicitarias por semana en total, no cuatro por cada canal. La inversión en Meta Ads se cotiza por separado. La publicidad no garantiza ventas ni una cantidad específica de visualizaciones. El cintillo web está incluido únicamente en el Plan Integral.</p><div class="ads-unified__directory"><div><strong>Tu negocio también puede formar parte de nuestro directorio comercial gratuito.</strong><p>Descubre nuestra vitrina comercial y conoce la propuesta publicitaria completa. La inscripción básica al directorio es gratuita e independiente de los planes.</p></div><a href="https://directorio.rocimarmorales.com/#planes" target="_blank" rel="noopener noreferrer">Conocer nuestra propuesta comercial →</a></div><div class="ads-offer__foot"><div><strong>¿Necesitas una campaña especial?</strong><p>Para lanzamientos, eventos o formatos adicionales, preparamos una propuesta personalizada según el alcance y la disponibilidad.</p></div><a href="https://wa.me/584141675017?text=Hola%20Rocimar%2C%20deseo%20informaci%C3%B3n%20y%20presupuesto%20sobre%20una%20campa%C3%B1a%20personalizada%20de%20publicidad." target="_blank" rel="noopener noreferrer">Solicitar presupuesto →</a></div>
     </div>
 
   </div>
